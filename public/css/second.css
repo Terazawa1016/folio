@@ -1,0 +1,147 @@
+body {
+    background-color: #D8D8D8;
+    border:solid 1px #fffffff;
+    font-family: 'Quicksand', sans-serif;
+
+}
+
+.nav{
+    float:left;
+    width:145px;
+    font-size:15px;
+    margin-top:10px;
+    margin-right:10px;
+}
+
+.nav-main{
+    /* border:solid 1px #ffffff; */
+    /* background:#ffffff; */
+    list-style-position:inside;
+}
+
+.left{
+    list-style:none;
+}
+
+.left li{
+    /* border-bottom:dotted 1px #d8d8d8; */
+    padding:10px;
+    padding-left:20px;
+}
+
+.left li:last-child{
+    border-bottom:none;
+}
+
+.left li a{
+  color:#fff;
+    text-decoration:none;
+    display:block;
+}
+
+.left img{
+    padding-right:5px;
+}
+
+
+/* 中央上------------------------------------------------------------------- */
+.flex-top{
+    list-style:none;
+    clear:both;
+    display:flex;
+    justify-content: space-between;
+    padding:10px;
+}
+
+.flex-top li{
+    flex:1;
+    text-align:center;
+}
+.flex-top a{
+    text-decoration:none;
+    font-size:9px;
+    color:black;
+}
+
+/* article--------------------------------------------------------------- */
+.article{
+    float:left;
+    width:640px;
+    font-size:15px;
+    margin-top:10px;
+}
+
+.article-img{
+    float:left;
+    width:40%;
+    clear:both;
+    padding:10px;
+
+}
+
+.article-img img{
+  width:620px;
+  height:360px;
+}
+.article-p{
+    float:right;
+    width:50%;
+    padding:20px 20px 0 20px;
+    margin-bottom:0;
+}
+
+.article-p p{
+    margin-bottom:0;
+}
+.article-p img{
+    padding:15px 5px 0;
+}
+.article-top{
+    border:solid 1px #fffffff;
+    background-color:#ffffff;
+    float:left;
+    width:640px;
+}
+
+.article-middle{
+    border:solid 1px#ffffff;
+    background-color:#ffffff;
+    float:left;
+    width:640px;
+    margin-top:10px;
+}
+
+.article-bottom{
+    border:solid 1px#ffffff;
+    background-color:#ffffff;
+    float:left;
+    width:640px;
+    margin-top:10px;
+    margin-bottom:10px;
+}
+
+.bottom-left{
+    float:left;
+}
+
+.bottom-left h3{
+    color:#664433;
+}
+
+.article span{
+    color:#fc8833;
+    float:right;
+    padding-bottom:8px;
+}
+
+/* aside----------------------------------------------------------------- */
+
+.aside{
+    width:154px;
+    float:right;
+    margin-top:10px;
+}
+
+.aside img{
+    margin-bottom:10px;
+}

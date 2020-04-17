@@ -1,0 +1,158 @@
+// 🟡RSSでリアルタイムの商品表示
+//      public function index(Request $request)
+//      {
+//
+//        $favorited = [];
+//        $feed = FeedReader::read('https://books.rakuten.co.jp/RBOOKS/xml/rss/000/999/000/rss.xml');
+//
+// // ログインユーザーのいいね数表示
+// // \DB::enableQueryLog();
+//        $count_favorite = User::find(
+//         Auth::id()
+//        )->favorites()->sum('count');
+//
+// // dd(DB::getQueryLog());
+//
+//        if ( $feed->error() ) {
+//            echo $feed->error();
+//        }
+//
+// // ログインしているユーザーのお気に入りを全て取得している
+//        $favorite = Favorite::where([
+//         'user_id' => Auth::id()
+//        ])->get();
+//
+//        $hash = [];
+//
+//        foreach ($feed->get_items() as $key=>$item) {
+//
+//          // feedReaderのメソッドでオブジェクト化して一致するlinkを取得
+//               $is_favorite=$favorite->where(
+//                 'link',trim($item->get_link()))->first();
+//               // print_r($is_favorite->link);
+//
+//              $content = $item->get_content();
+//                $hash_data = [
+//                  'site_title' => $item->get_feed()->get_title(),
+//                  'title' => trim($item->get_title()),
+//                  'permalink' => trim($item->get_permalink()),
+//                  'link' => trim($item->get_link()),
+//                  'date' => $item->get_date('Y-m-d H:i:s'),
+//                  'content' => $content,
+//                  'img' => $this->get_first_image_url($content),
+//
+//             //初めの取得では0にする
+//                  'liked' => 0
+//                ];
+//
+// // もし一致するリンクが取得できていればfavoriteテーブルのcountカラムの値を入れる
+//                if(!empty($is_favorite)) {
+//                  $hash_data['liked'] = $is_favorite->count;
+//                }
+//                $hash[] = $hash_data;
+//            }
+//
+//            if(isset($request->s)){
+//              foreach ($hash as $key=>$value){
+//                if(strpos($value['title'],$request->s) === false){
+//
+//          //'abcd'のなかに'bc'が含まれていない場合
+//                unset($hash[$key]);
+//                }
+//              }
+//            }
+//
+//            array_values($hash);
+//
+// // 検索した名前に部分一致する商品情報を取得する
+//             // if($request->has('s')) {
+//             //   $favorite->where('name', 'lIKE', "%{$request->s}%");
+//             //   $hash = $favorite;
+//             //
+//             // }
+//
+// // お気に入り情報取得
+//           $is_favorite = false;
+//            if($request->has('favorite_id')) {
+//              $hash = $favorite;
+//              $is_favorite = true;
+//            }
+//
+//      // ユーザのオリジナルランキングを表示
+//           if($request->has('rank_id')){
+//     // \DB::enableQueryLog();
+//
+//          // 各ユーザーのリンクをまとめる為、仮のDB作成し、
+//          // 関数SUMでcountカラムを合計値を作る
+//             $rank_count = Favorite::select(
+//               'link', \DB::raw('SUM(count) AS total'))->groupBy('link');
+//
+//        // 上でまとめたlinkと他の情報を取得（日付といいねは空文字にする）
+//             $hash = Favorite::select(
+//               'favorites.link','img','title',\DB::raw("'' AS date"), \DB::raw("'' AS liked"))
+//               ->distinct()
+//
+//      // サブクエリで元々のFavoriteテーブルのlinkと上の仮で作成したFavoriteのリンクを結合する
+//             ->joinSub($rank_count, 'rank_count', function($join) {
+//               $join->on('favorites.link', '=', 'rank_count.link');
+//             })->orderBy('rank_count.total', 'desc')->get()->toArray();
+//
+//             $is_favorite = true;
+//
+//             $favorited = Favorite::select('id')->where([
+//               'user_id'=>Auth::id()])->pluck('id','id')->toArray();
+//
+//     // dd(\DB::getQueryLog());
+//           }
+//
+//            return view('top.index', compact('hash', 'count_favorite', 'is_favorite', 'favorited'));
+//        }
+// 🟡ここまで
+
+
+     //   public function favorite(Request $request)
+     //   {
+     //
+     //   $input = $request->all();
+     //   $input['user_id'] = Auth::id();
+     //   unset($input['_token']);
+     //
+     //   $favorite =  favorite::where([
+     //     'user_id'=>$input['user_id'],
+     //     'link'=>$input['link']
+     //     ])->first();
+     //   if($favorite) {
+     //
+     //     $favorite->delete();
+     //   } else {
+     //     $favorite = new Favorite;
+     //
+     //     $favorite->fill($input);
+     //     $favorite->count = 1;
+     //     $favorite->save();
+     //   }
+     //
+     //   return redirect('/top');
+     // }
+
+     // public function rank(Request $request)
+     // {
+     //
+     //  return view('top.index', compact('hash', 'count_favorite', 'is_favorite'));
+     //
+     // }
+
+
+
+       //imgのRSS取得メソッド
+            function get_first_image_url($content)
+            {
+              {
+              if (preg_match('/<img.+?src="(.+?)"/', $content, $matches))
+                {
+                return $matches[1];
+                }
+                 else echo '';
+              }
+
+             }
