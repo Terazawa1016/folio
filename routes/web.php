@@ -25,7 +25,11 @@ Route::post('/preference', 'HomeController@preference')->name('preference');
 Route::get('/favorite', 'HomeController@favorite')->name('favorite');
 
 Route::get('/rank', 'HomeController@rank')->name('rank');
+Route::get('/create', 'HomeController@create')->name('create');
+Route::post('/store','HomeController@store')->name('store');
 
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/home', 'BookController@index')->name('home');

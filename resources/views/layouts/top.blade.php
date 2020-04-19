@@ -3,10 +3,11 @@
 <head>
   <meta charset="utf-8">
   <title>BOOK LIST</title>
-  <link rel="stylesheet" href="{{ asset('css/top.css') }}">
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 
   <link href="https://fonts.googleapis.com/css?family=Quicksand" rel="stylesheet">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet" crossorigin="anonymous">
+  <link rel="stylesheet" href="{{ asset('css/top.css') }}">
 
 
 </head>
@@ -52,7 +53,12 @@
                     <li><a href="/shop?category=Android">Android</a></li>
                   </ul>
                 </li>
-               <li><a href="{{route('shop')}}">item</a></li>
+               <li><a href="{{route('shop')}}">item</a>
+                 <ul>
+                   <li><a href="{{route('shop')}}">LIST</a></li>
+                   <li><a href="{{route('create')}}">CREATE</a></li>
+                 </ul>
+               </li>
                <li>
                  <a href="{{route('favorite')}}" class="favorite_id">favorite
                  </a>
@@ -76,7 +82,6 @@
     <p><small> &#169; TestUser All Rights Reserved.</small></p>
 </footer>
 
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 
 <script type="text/javascript">
 

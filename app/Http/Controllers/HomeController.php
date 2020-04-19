@@ -5,10 +5,13 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use FeedReader;
 use App\Favorite;
+use App\Http\Requests\CreateRequest;
 use Auth;
 use App\User;
 use App\Like;
 use App\Preference;
+use GuzzleHttp\Client;
+
 
 use Illuminate\Support\Facades\Http;
 
@@ -62,7 +65,7 @@ class HomeController extends Controller
 
        // dd(\DB::getQueryLog());
 
-      $items = $items->orderBy('likes.id','asc')->paginate(10);
+      $items = $items->orderBy('likes.id','desc')->paginate(10);
 
       // dd(\DB::getQueryLog());
 
@@ -84,7 +87,7 @@ class HomeController extends Controller
         $like = $like->whereHas('Preferences', function($query){
           $query->where('user_id', Auth::id());
         });
-        
+
         if($request->has('s')) {
           $like = $like->whereHas('Preferences', function($query) use($request){
             $query->where('title','like', '%'. $request->s.'%');
@@ -171,26 +174,53 @@ class HomeController extends Controller
      }
 
 // API保存処理
-     public function shop()
+     public function store(CreateRequest $request)
      {
-//
-// // 楽天APIを取得
-//        $response = Http::get('https://app.rakuten.co.jp/services/api/BooksTotal/Search/20170404?format=json&keyword=%E6%9C%AC&booksGenreId=000&isbnjan=9784870971899&hits=1&applicationId=1077710735946027245');
-//        $data = json_decode ($response,true);
-//
-// // Likeテーブルに一度保存
-//        $like = new Like;
-//        $like->user_id = Auth::id();
-//        $like->link = $data['Items'][0]['Item']['itemUrl'];
-//        $like->title = $data['Items'][0]['Item']['title'];
-//        $like->img = $data['Items'][0]['Item']['largeImageUrl'];
-//        $like->category = 'html';
-//        $like->count = 0;
-//
-//        $like->save();
+       $input = $request->all();
+       $input['user_id'] = Auth::id();
+       unset($input['_token']);
 
-// 保存されたLikeからデータを取得
+       $isbn = $input['isbn'];
 
-          // return redirect('/shop');
+       if(!empty($isbn)) {
+        $client = new \GuzzleHttp\Client();
+         $res = $client->request('GET', 'https://app.rakuten.co.jp/services/api/BooksTotal/Search/20170404', [
+             'query' => [
+               'format' => 'json',
+               'keyword' => '%E6%9C%AC',
+               'booksGenreId' => '000',
+                'applicationId' => '1077710735946027245',
+                'isbnjan' => urlencode($isbn)
+              ]
+         ]);
+
+         $json = json_decode($res->getBody(), true);
+
+         // dd($json);
+
+         if ($json['count'] > 0 ) {
+
+           $like = new Like;
+           $like->user_id = Auth::id();
+           $like->link = $json['Items'][0]['Item']['itemUrl'];
+           $like->title = $json['Items'][0]['Item']['title'];
+           $like->img = $json['Items'][0]['Item']['largeImageUrl'];
+           $like->category = $input['category'];
+           $like->count = 0;
+
+           $like->save();
+           return redirect('/shop');
+
+         }
+       }
+          return redirect('/create')->with('flash_message', '商品が登録できませんでした');
+     }
+
+     public function create(){
+ // ユーザのお気に入り追加合計値
+        $count_preference = User::find(
+         Auth::id()
+        )->preference()->sum('count');
+       return view('top.create',compact('count_preference'));
      }
 }
