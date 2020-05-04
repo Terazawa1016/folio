@@ -33,3 +33,6 @@ Route::get('/', function () {
 });
 
 Route::get('/home', 'BookController@index')->name('home');
+
+Route::get('/play', 'PlayController@play')->name('play');
+

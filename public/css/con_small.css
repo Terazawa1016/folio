@@ -1,0 +1,54 @@
+@charset "utf-8";
+
+@media screen and (max-width: 420px) {
+    /* 420pxまでの幅の場合に適応される */
+    header {
+        min-width: 0;
+        width: 380px;
+    }
+
+    body {
+        min-width: 0;
+    }
+
+    .header-shop {
+        padding-top: 30px;
+    }
+    .header-box {
+        margin: 0 auto;
+        min-width: 0;
+    }
+    .header-menu {
+        padding-top: 140px;
+        width: 100%;
+    }
+    .content {
+        min-width: 0;
+        width: 380px;
+    }
+
+    .home_box img {
+        width: 80%;
+    }
+    #sbox4 {
+        top: 50px;
+    }
+    .home_content {
+        margin-top: 14rem;
+    }
+
+    #sbtn4 {
+        top: 52px;
+    }
+
+    #menu {
+        width: 100%;
+    }
+
+    .home_item {
+        margin: 0 auto;
+    }
+    .item-list {
+        width: 380px;
+    }
+}

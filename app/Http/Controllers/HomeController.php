@@ -198,7 +198,7 @@ class HomeController extends Controller
 
          // dd($json);
 
-         if ($json['count'] > 0 ) {
+         if ($json['count'] > 0 && count($json['Items']) > 0) {
 
            $like = new Like;
            $like->user_id = Auth::id();

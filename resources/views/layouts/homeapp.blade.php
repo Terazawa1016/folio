@@ -2,8 +2,12 @@
 <html lang="ja">
 <head>
   <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+
   <title>BOOK LIST</title>
   <link rel="stylesheet" href="{{ asset('css/top.css') }}">
+  <link rel="stylesheet" href="{{ asset('css/con_small.css') }}"/>
+
 
   <link href="https://fonts.googleapis.com/css?family=Quicksand" rel="stylesheet">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet" crossorigin="anonymous">
@@ -36,6 +40,9 @@
                <li>
                  <a href="{{route('rank')}}">popular</a>
                </li>
+               <li>
+                <a href="{{route('play')}}">article</a>
+              </li>
            </ul>
        </nav>
   </header>

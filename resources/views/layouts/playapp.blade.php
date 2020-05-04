@@ -10,6 +10,7 @@
   <link href="https://fonts.googleapis.com/css?family=Quicksand" rel="stylesheet">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet" crossorigin="anonymous">
   <link rel="stylesheet" href="{{ asset('css/top.css') }}">
+  <link rel="stylesheet" href="{{ asset('css/play.css') }}">
   <link rel="stylesheet" href="{{ asset('css/top_small.css') }}"/>
 
 </head>

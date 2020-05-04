@@ -1,0 +1,68 @@
+@charset "utf-8";
+
+@media screen and (max-width: 420px) {
+    /* 420pxまでの幅の場合に適応される */
+    header {
+        min-width: 0;
+        height: 160px;
+    }
+
+    body {
+        min-width: 0;
+    }
+
+    .logo {
+        width: 100%;
+        padding-left: 0;
+        margin-left: 0;
+    }
+    .header-box {
+        min-width: 0;
+    }
+
+    .header-shop {
+        padding-right: 30px;
+        text-align: center;
+    }
+    .content {
+        min-width: 0;
+        text-align: center;
+    }
+
+    .header-menu {
+        padding-top: 170px;
+    }
+    .header-list {
+        width: 350px;
+    }
+
+    #menu {
+        width: 350px;
+    }
+    .sticky {
+        height: 100%;
+    }
+    #sbox4 {
+        right: 10;
+        left: 10;
+    }
+    #sbtn4 {
+        right: 10;
+        left: 10;
+    }
+    .item-list {
+        padding-left: 16%;
+        margin: 0 auto;
+    }
+    .item {
+        margin-left: 0;
+    }
+    .item-list li {
+        margin-left: 0;
+        text-align: center;
+    }
+    .detail-img {
+        width: 70%;
+        max-width: 100%;
+    }
+}
