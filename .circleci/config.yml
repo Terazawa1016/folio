@@ -4,9 +4,6 @@ jobs:
     build:
         docker:
             - image: alpine
-        branches:
-            only:
-            - master
         steps:
             - checkout
             - run:
@@ -34,7 +31,4 @@ workflows:
             - deploy:
                 requires:
                     # build ジョブに依存してるので、先に build ジョブを実行しろ！
-                    - build
-                    filters:
-                      branches:
-                        only: master  
+                    - build     
