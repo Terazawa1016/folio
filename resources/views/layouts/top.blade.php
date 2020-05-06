@@ -27,9 +27,11 @@
 
       <p class="nemu user_name">user：{{Auth::user()->name}}</p>
 
+        @if (!empty($count_preference))
         <div class="text-right mb-2">good：
              <span class="badge badge-pill badge-success">{{ $count_preference }}</span>
         </div>
+        @endif
 
         <form id="form4" action="" method="get">
           <input id="sbox4"  id="s" name="s" type="text" placeholder="アイテムを探す" />

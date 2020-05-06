@@ -37,10 +37,11 @@ class HomeController extends Controller
      public function shoplist(Request $request) {
 
 // ユーザのお気に入り追加合計値
-       $count_preference = User::find(
-        Auth::id()
-       )->preference()->sum('count');
 
+      
+        $count_preference = User::find(
+          Auth::id()
+        )->preference()->sum('count');
        // \DB::enableQueryLog();
 
        $like = new Like;
