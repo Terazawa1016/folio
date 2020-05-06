@@ -35,3 +35,6 @@ workflows:
                 requires:
                     # build ジョブに依存してるので、先に build ジョブを実行しろ！
                     - build
+                    filters:
+                      branches:
+                        only: master  
