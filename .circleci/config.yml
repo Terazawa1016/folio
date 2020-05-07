@@ -9,7 +9,7 @@ jobs:
             - run:
                 name: Echo Test
                 command: echo "CircleCI Test"
-    # SSH 接続・デプロイを実行
+    # EC2 に SSH 接続・デプロイを実行
     deploy:
         machine:
             image: circleci/classic:edge
@@ -21,7 +21,7 @@ jobs:
                       - $fingerprint
             # CircleCI に登録した環境変数を使って SSH
             - run: ssh srszrmlb@osk002.cbsv.jp 'cd /home/srszrmlb/public_html/portfolio.cfbx.jp/book_backup/folio; git pull'
-#てすと
+
 
 workflows:
     version: 2
@@ -31,4 +31,4 @@ workflows:
             - deploy:
                 requires:
                     # build ジョブに依存してるので、先に build ジョブを実行しろ！
-                    - build     
+                    - build
