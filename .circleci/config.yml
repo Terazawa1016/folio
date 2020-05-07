@@ -9,7 +9,7 @@ jobs:
             - run:
                 name: Echo Test
                 command: echo "CircleCI Test"
-    # EC2 に SSH 接続・デプロイを実行
+    # SSH 接続・デプロイを実行
     deploy:
         machine:
             image: circleci/classic:edge
