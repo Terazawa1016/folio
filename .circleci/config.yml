@@ -1,0 +1,34 @@
+version: 2
+ 
+jobs:
+    build:
+        docker:
+            - image: alpine
+        steps:
+            - checkout
+            - run:
+                name: Echo Test
+                command: echo "CircleCI Test"
+    # SSH 接続・デプロイを実行
+    deploy:
+        machine:
+            image: circleci/classic:edge
+        steps:
+            - checkout
+            # CircleCI に登録した秘密鍵を呼び出す
+            - add_ssh_keys:
+                  fingerprints:
+                      - $fingerprint
+            # CircleCI に登録した環境変数を使って SSH
+            - run: ssh srszrmlb@osk002.cbsv.jp 'cd /home/srszrmlb/public_html/portfolio.cfbx.jp/book_backup/folio; git pull'
+#てすと
+
+workflows:
+    version: 2
+    build_and_deploy:
+        jobs:
+            - build
+            - deploy:
+                requires:
+                    # build ジョブに依存してるので、先に build ジョブを実行しろ！
+                    - build     
