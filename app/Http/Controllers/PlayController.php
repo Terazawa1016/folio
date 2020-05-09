@@ -26,6 +26,7 @@ class PlayController extends Controller
         // $request->flashOnly(['title']);               
          $request->flash();
 
+        $input = urlencode($input);
 
     // ユーザのお気に入り追加合計値
         $count_preference = User::find(
