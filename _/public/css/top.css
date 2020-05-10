@@ -121,6 +121,8 @@ a:hover {
 body {
     font-family: "Quicksand", sans-serif;
     min-width: 600px;
+    /* 変更 */
+    background: #ffffff;
 }
 
 header {
